@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { LayoutContext } from "../contexts/LayoutContext";
 
-function SearchBar({ handleSubmit }) {
+function SearchBar() {
 
   const [input, setInput] = useState("");
+  const { handleSubmit } = useContext(LayoutContext);
 
   function handleChange(e) {
     setInput(e.target.value);
