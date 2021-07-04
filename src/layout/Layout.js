@@ -9,8 +9,10 @@ function Layout() {
   const [search, setSearch] = useState("");
   const [history, setHistory] = useState([]);
   
+  // define data as return from useRequest hook
   const data = useRequest(`http://hn.algolia.com/api/v1/search?query=${search}`);
   
+  // updates 'search' and history state and triggers re-render in useRequest hook
   const handleSubmit = (event, input) => {
     event.preventDefault();
     setSearch(input);
@@ -18,6 +20,7 @@ function Layout() {
   }
 
   return (
+    // make context available to all descendants 
     <LayoutContext.Provider value={{ data, handleSubmit, search, history }}>
       <Menu />
       <Routes />
