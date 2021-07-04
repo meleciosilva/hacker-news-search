@@ -1,70 +1,121 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hacker News Search
 
-## Available Scripts
+This project is a simple search application that allows users to search Hacker News articles by keyword. It also saves your search history for a single session.
 
-In the project directory, you can run:
+## API Reference
 
-### `npm start`
+Hacker News Algolia API:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```http
+https://hn.algolia.com/api
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Each user `search` sends a request to the following url:
 
-### `npm test`
+```http
+  http://hn.algolia.com/api/v1/search?query={search}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The response should look like the following:
 
-### `npm run build`
+```json
+{
+  "hits": [
+    {
+      "created_at": "2017-06-16T13:03:09.000Z",
+      "title": "Amazon to Acquire Whole Foods for $13.7B",
+      "url": "https://www.bloomberg.com/news/articles/2017-06-16/amazon-to-buy-whole-foods?cmpid=socialflow-twitter-business&utm_content=business&utm_campaign=socialflow-organic&utm_source=twitter&utm_medium=social",
+      "author": "whatok",
+      "points": 1687,
+      "story_text": null,
+      "comment_text": null,
+      "num_comments": 824,
+      "story_id": null,
+      "story_title": null,
+      "story_url": null,
+      "parent_id": null,
+      "created_at_i": 1497618189,
+      "relevancy_score": 7487,
+      "_tags": [
+        "story",
+        "author_whatok",
+        "story_14568468"
+      ],
+      "objectID": "14568468",
+      "_highlightResult": {
+        "title": {
+          "value": "Amazon to Acquire Whole <em>Foo</em>ds for $13.7B",
+          "matchLevel": "full",
+          "fullyHighlighted": false,
+          "matchedWords": [
+            "foo"
+          ]
+        },
+        "url": {
+          "value": "https://www.bloomberg.com/news/articles/2017-06-16/amazon-to-buy-whole-<em>foo</em>ds?cmpid=socialflow-twitter-business&utm_content=business&utm_campaign=socialflow-organic&utm_source=twitter&utm_medium=social",
+          "matchLevel": "full",
+          "fullyHighlighted": false,
+          "matchedWords": [
+            "foo"
+          ]
+        },
+        "author": {
+          "value": "whatok",
+          "matchLevel": "none",
+          "matchedWords": []
+        }
+      }
+    },
+    // ...
+```
+  
+## Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### /search
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Search](./images/searchPage.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### /history
 
-### `npm run eject`
+![History](./images/historyPage.png)
+  
+## Run Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Clone the project
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+  git clone https://github.com/meleciosilva/hacker-news-search.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Go to the project directory
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+  cd hacker-news-search
+```
 
-## Learn More
+Install dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Start the server
 
-### Code Splitting
+```bash
+  npm run start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Tech Stack
 
-### Analyzing the Bundle Size
+- **Client:** HTML, CSS, Boostrap, JavaScript, React, Bootstrap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## What I Learned
 
-### Making a Progressive Web App
+### Custom Hooks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Custom hooks are used to encapsulate common hook-related logic that can easily be reused across components
 
-### Advanced Configuration
+### React's Context API / useContext Hook
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React's useContext hook is useful for passing data through an application without manually passing data via props
