@@ -1,4 +1,4 @@
-function ListArticles({ articles = [] }) {
+function ListArticles({ articles }) {
 
   if (!articles.length) return <h1>No articles found</h1>;
   return (
