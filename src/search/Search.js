@@ -8,16 +8,14 @@ import { LayoutContext } from "../contexts/LayoutContext";
 function Search() {
   
   const { 
-    data: { data: { hits }, loading, error },
-    search
+    data: { data: { hits }, loading, error }
   } = useContext(LayoutContext);
 
-  if (loading) return <h1>Loading...</h1>
   return (
     <div className="px-2 py-3">
       <SearchBar />
       <ErrorAlert error={error} />
-      { !search ? <h1>No Articles Found</h1> : <ListArticles articles={hits} /> }
+      { loading ? <h3>Loading...</h3> : <ListArticles articles={hits} /> }
     </div>
   )
 }
