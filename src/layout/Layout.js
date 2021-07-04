@@ -6,7 +6,7 @@ import useRequest from "../hooks/useRequest";
 
 function Layout() {
 
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
   const [history, setHistory] = useState([]);
   
   const data = useRequest(`http://hn.algolia.com/api/v1/search?query=${search}`);
